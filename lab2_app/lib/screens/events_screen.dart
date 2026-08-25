@@ -8,6 +8,27 @@ import 'event_detail_screen.dart';
 class EventsScreen extends StatelessWidget {
   const EventsScreen({super.key});
 
+  Widget _buildCategoryChip(String label, bool isSelected) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      decoration: BoxDecoration(
+        color: isSelected ? AppTheme.primaryColor : AppTheme.backgroundColor,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(
+          color: isSelected ? AppTheme.primaryColor : AppTheme.dividerColor,
+        ),
+      ),
+      child: Text(
+        label,
+        style: TextStyle(
+          color: isSelected ? Colors.white : AppTheme.onSurfaceColor,
+          fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+          fontSize: 14,
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final List<Event> events = MockData.events;
@@ -29,9 +50,30 @@ class EventsScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(
                 horizontal: AppTheme.spacingM, vertical: AppTheme.spacingS),
-            child: Text(
-              '${events.length} upcoming events',
-              style: AppTheme.captionStyle,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Wrap(
+                  spacing: 8.0,
+                  runSpacing: 8.0,
+                  children: [
+                    _buildCategoryChip('All', true),
+                    _buildCategoryChip('Technical', false),
+                    _buildCategoryChip('Cultural', false),
+                    _buildCategoryChip('Sports', false),
+                    _buildCategoryChip('Seminars', false),
+                    _buildCategoryChip('Workshops', false),
+                    _buildCategoryChip('Hackathons', false),
+                    _buildCategoryChip('Guest Lectures', false),
+                    _buildCategoryChip('Competitions', false),
+                  ],
+                ),
+                const SizedBox(height: AppTheme.spacingM),
+                Text(
+                  '${events.length} upcoming events',
+                  style: AppTheme.captionStyle,
+                ),
+              ],
             ),
           ),
           Expanded(

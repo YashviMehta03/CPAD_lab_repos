@@ -22,6 +22,7 @@ class FeatureCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Stack(
+        fit: StackFit.expand,
         children: [
           // Main card
           Container(

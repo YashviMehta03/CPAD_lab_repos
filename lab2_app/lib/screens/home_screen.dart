@@ -40,146 +40,202 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
+  Widget _buildHeader() {
+    return Column(
+      children: [
+        const SizedBox(height: AppTheme.spacingS),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(_greeting(), style: AppTheme.labelStyle),
+                  const SizedBox(height: 4),
+                  Text('Campus Companion', style: AppTheme.displayStyle),
+                  const SizedBox(height: 4),
+                  Row(
+                    children: [
+                      const Icon(Icons.calendar_today_outlined,
+                          size: 13, color: AppTheme.subtleText),
+                      const SizedBox(width: 4),
+                      Text(_formattedDate(), style: AppTheme.captionStyle),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              width: 44,
+              height: 44,
+              decoration: BoxDecoration(
+                color: AppTheme.primaryColor.withValues(alpha: 0.1),
+                borderRadius: BorderRadius.circular(AppTheme.radiusM),
+              ),
+              child: const Icon(
+                Icons.person_rounded,
+                color: AppTheme.primaryColor,
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildTodayClasses(BuildContext context) {
+    return TodayClassesCard(
+      classes: MockData.todayClasses,
+      onViewTimetable: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => const TimetableScreen()),
+        );
+      },
+    );
+  }
+
+  Widget _buildFeaturesHeading() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text('Features', style: AppTheme.headingStyle),
+        Text('LY Computer Engineering', style: AppTheme.captionStyle),
+      ],
+    );
+  }
+
+  Widget _buildFeaturesGrid(BuildContext context) {
+    return OrientationBuilder(
+      builder: (context, orientation) {
+        return GridView.count(
+          crossAxisCount: orientation == Orientation.portrait ? 2 : 4,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          crossAxisSpacing: AppTheme.spacingM,
+          mainAxisSpacing: AppTheme.spacingM,
+          childAspectRatio: 0.85,
+          children: [
+            FeatureCard(
+              icon: Icons.schedule_rounded,
+              title: 'Timetable',
+              subtitle: 'View your weekly class schedule',
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const TimetableScreen()),
+              ),
+            ),
+            FeatureCard(
+              icon: Icons.school_rounded,
+              title: 'Professors',
+              subtitle: 'Browse professors and their subjects',
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const ProfessorsScreen()),
+              ),
+            ),
+            FeatureCard(
+              icon: Icons.event_rounded,
+              title: 'Events',
+              subtitle: 'See upcoming campus events',
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const EventsScreen()),
+              ),
+            ),
+            FeatureCard(
+              icon: Icons.calendar_month_rounded,
+              title: 'Academic Calendar',
+              subtitle: 'View holidays and important dates',
+              isComingSoon: true,
+              onTap: () => _showComingSoon(context, 'Academic Calendar'),
+            ),
+            FeatureCard(
+              icon: Icons.search_rounded,
+              title: 'Lost & Found',
+              subtitle: 'Find or report lost items',
+              isComingSoon: true,
+              onTap: () => _showComingSoon(context, 'Lost & Found'),
+            ),
+            FeatureCard(
+              icon: Icons.campaign_rounded,
+              title: 'Announcements',
+              subtitle: 'View important campus updates',
+              isComingSoon: true,
+              onTap: () => _showComingSoon(context, 'Announcements'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _mobileLayout(BuildContext context) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(AppTheme.spacingM),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _buildHeader(),
+          const SizedBox(height: AppTheme.spacingL),
+          _buildTodayClasses(context),
+          const SizedBox(height: AppTheme.spacingL),
+          _buildFeaturesHeading(),
+          const SizedBox(height: AppTheme.spacingM),
+          _buildFeaturesGrid(context),
+          const SizedBox(height: AppTheme.spacingL),
+        ],
+      ),
+    );
+  }
+
+  Widget _tabletLayout(BuildContext context) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(AppTheme.spacingM),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildHeader(),
+                const SizedBox(height: AppTheme.spacingL),
+                _buildTodayClasses(context),
+              ],
+            ),
+          ),
+          const SizedBox(width: AppTheme.spacingL),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildFeaturesHeading(),
+                const SizedBox(height: AppTheme.spacingM),
+                _buildFeaturesGrid(context),
+                const SizedBox(height: AppTheme.spacingL),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppTheme.backgroundColor,
       body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(AppTheme.spacingM),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: AppTheme.spacingS),
-              // ── Header ──────────────────────────────────────────────────────
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(_greeting(), style: AppTheme.labelStyle),
-                        const SizedBox(height: 4),
-                        Text('Campus Companion', style: AppTheme.displayStyle),
-                        const SizedBox(height: 4),
-                        Row(
-                          children: [
-                            const Icon(Icons.calendar_today_outlined,
-                                size: 13, color: AppTheme.subtleText),
-                            const SizedBox(width: 4),
-                            Text(_formattedDate(), style: AppTheme.captionStyle),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  // Avatar/profile icon
-                  Container(
-                    width: 44,
-                    height: 44,
-                    decoration: BoxDecoration(
-                      color: AppTheme.primaryColor.withValues(alpha: 0.1),
-                      borderRadius: BorderRadius.circular(AppTheme.radiusM),
-                    ),
-                    child: const Icon(
-                      Icons.person_rounded,
-                      color: AppTheme.primaryColor,
-                    ),
-                  ),
-                ],
-              ),
-              const SizedBox(height: AppTheme.spacingL),
-
-              // ── Today's Classes ─────────────────────────────────────────────
-              TodayClassesCard(
-                classes: MockData.todayClasses,
-                onViewTimetable: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => const TimetableScreen()),
-                  );
-                },
-              ),
-              const SizedBox(height: AppTheme.spacingL),
-
-              // ── Features heading ────────────────────────────────────────────
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Features', style: AppTheme.headingStyle),
-                  Text('LY Computer Engineering', style: AppTheme.captionStyle),
-                ],
-              ),
-              const SizedBox(height: AppTheme.spacingM),
-
-              // ── Feature Grid ────────────────────────────────────────────────
-              GridView.count(
-                crossAxisCount: 2,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                crossAxisSpacing: AppTheme.spacingM,
-                mainAxisSpacing: AppTheme.spacingM,
-                childAspectRatio: 1.05,
-                children: [
-                  FeatureCard(
-                    icon: Icons.schedule_rounded,
-                    title: 'Timetable',
-                    subtitle: 'View your weekly class schedule',
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) => const TimetableScreen()),
-                    ),
-                  ),
-                  FeatureCard(
-                    icon: Icons.school_rounded,
-                    title: 'Professors',
-                    subtitle: 'Browse professors and their subjects',
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) => const ProfessorsScreen()),
-                    ),
-                  ),
-                  FeatureCard(
-                    icon: Icons.event_rounded,
-                    title: 'Events',
-                    subtitle: 'See upcoming campus events',
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => const EventsScreen()),
-                    ),
-                  ),
-                  FeatureCard(
-                    icon: Icons.calendar_month_rounded,
-                    title: 'Academic Calendar',
-                    subtitle: 'View holidays and important dates',
-                    isComingSoon: true,
-                    onTap: () =>
-                        _showComingSoon(context, 'Academic Calendar'),
-                  ),
-                  FeatureCard(
-                    icon: Icons.search_rounded,
-                    title: 'Lost & Found',
-                    subtitle: 'Find or report lost items',
-                    isComingSoon: true,
-                    onTap: () => _showComingSoon(context, 'Lost & Found'),
-                  ),
-                  FeatureCard(
-                    icon: Icons.campaign_rounded,
-                    title: 'Announcements',
-                    subtitle: 'View important campus updates',
-                    isComingSoon: true,
-                    onTap: () =>
-                        _showComingSoon(context, 'Announcements'),
-                  ),
-                ],
-              ),
-              const SizedBox(height: AppTheme.spacingL),
-            ],
-          ),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            if (constraints.maxWidth > 600) {
+              return _tabletLayout(context);
+            } else {
+              return _mobileLayout(context);
+            }
+          },
         ),
       ),
     );
