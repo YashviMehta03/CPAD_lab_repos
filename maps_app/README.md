@@ -1,17 +1,13 @@
-# map_demo_app
+# Map Demo App
 
-A new Flutter project.
+An interactive map application for mobile devices that helps you pinpoint your current location and discover nearby landmarks.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## Features
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+* **Interactive Google Map:** Full-screen map supporting smooth panning, pinching, and zooming gestures.
+* **Real-time Geolocation:** Safely requests location permissions to identify your exact coordinates, smoothly glides the camera to your location, and drops a blue marker labeled **"You are here"**.
+* **Nearby Points of Interest (POIs):** Displays interactive pins for local landmarks (Matunga Station, Five Gardens, and Dadar Station) with informational pop-up windows upon tapping.
+* **One-Tap Re-Center Button:** Quickly animates the camera back to your current location using the floating target button.
+* **Graceful Error Handling:** Displays helpful on-screen messages if location services are disabled or permissions are denied without interrupting app usage.
