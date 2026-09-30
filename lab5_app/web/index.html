@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Lab 5 - Dart DOM Manipulation Demo. Demonstrates dynamic DOM access and manipulation using Dart.">
+    <title>Lab 5 | Dart DOM Manipulation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script defer src="main.dart.js"></script>
+</head>
+
+<body>
+  <!-- Hero / Header -->
+  <header class="hero">
+    <div class="hero-content">
+      <div class="dart-logo">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17 73L5 31 31 5h42l22 22-22 51-44 17z" fill="#00B4AB"/>
+          <path d="M31 5L5 31l12 42 44-17L83 5z" fill="#00D2FF" opacity="0.35"/>
+          <path d="M5 31l12 42 7-42z" fill="#fff" opacity="0.2"/>
+        </svg>
+      </div>
+      <h1 id="main-title">Dart DOM Manipulation</h1>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Section 1: Text Manipulation -->
+    <section class="card" id="section-text">
+      <div class="card-header">
+        <span class="section-number">01</span>
+        <div>
+          <h2 class="card-title">Text Content Manipulation</h2>
+          <p class="card-desc">Change the displayed text of a DOM element dynamically using Dart.</p>
+        </div>
+      </div>
+      <div class="demo-area">
+        <p id="demo-text" class="demo-text">Hello! I am a paragraph element. Click the button to change my content.</p>
+        <div class="input-row">
+          <input id="text-input" type="text" placeholder="Type new text here..." maxlength="120" />
+          <button id="btn-change-text" class="btn btn-primary">Update Text</button>
+          <button id="btn-reset-text" class="btn btn-secondary">Reset</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Style Manipulation -->
+    <section class="card" id="section-style">
+      <div class="card-header">
+        <span class="section-number">02</span>
+        <div>
+          <h2 class="card-title">Style &amp; Colour Manipulation</h2>
+          <p class="card-desc">Modify CSS properties of DOM elements at runtime without a page reload.</p>
+        </div>
+      </div>
+      <div class="demo-area">
+        <div id="style-box" class="style-box">
+          <span id="style-box-label">I change with style!</span>
+        </div>
+        <div class="button-group">
+          <button id="btn-color-blue"   class="btn color-btn" style="--c:#4F8EF7">Blue</button>
+          <button id="btn-color-green"  class="btn color-btn" style="--c:#22C55E">Green</button>
+          <button id="btn-color-purple" class="btn color-btn" style="--c:#A855F7">Purple</button>
+          <button id="btn-color-rose"   class="btn color-btn" style="--c:#F43F5E">Rose</button>
+          <button id="btn-color-amber"  class="btn color-btn" style="--c:#F59E0B">Amber</button>
+        </div>
+        <div class="button-group">
+          <button id="btn-font-small"  class="btn btn-secondary">Small Text</button>
+          <button id="btn-font-medium" class="btn btn-secondary">Medium Text</button>
+          <button id="btn-font-large"  class="btn btn-secondary">Large Text</button>
+          <button id="btn-font-bold"   class="btn btn-secondary">Toggle Bold</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: CSS Class Toggle -->
+    <section class="card" id="section-class">
+      <div class="card-header">
+        <span class="section-number">03</span>
+        <div>
+          <h2 class="card-title">CSS Class Toggling</h2>
+          <p class="card-desc">Dynamically add or remove CSS classes from elements to switch visual themes.</p>
+        </div>
+      </div>
+      <div class="demo-area">
+        <div id="theme-box" class="theme-box theme-default">
+          <p id="theme-box-text">This box's theme is controlled by CSS classes applied via Dart.</p>
+          <span id="theme-label" class="theme-label">Theme: Default</span>
+        </div>
+        <div class="button-group">
+          <button id="btn-theme-default" class="btn btn-secondary">Default</button>
+          <button id="btn-theme-success" class="btn btn-secondary">Success</button>
+          <button id="btn-theme-warning" class="btn btn-secondary">Warning</button>
+          <button id="btn-theme-danger"  class="btn btn-secondary">Danger</button>
+          <button id="btn-theme-dark"    class="btn btn-secondary">Dark</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Event & Counter -->
+    <section class="card" id="section-events">
+      <div class="card-header">
+        <span class="section-number">04</span>
+        <div>
+          <h2 class="card-title">Event Listeners &amp; Counter</h2>
+          <p class="card-desc">Attach multiple event listeners and track user interactions in real time.</p>
+        </div>
+      </div>
+      <div class="demo-area">
+        <div class="counter-display">
+          <div class="counter-ring">
+            <span id="click-count" class="counter-value">0</span>
+          </div>
+          <p class="counter-caption">Total button clicks</p>
+        </div>
+        <div class="button-group">
+          <button id="btn-counter-inc"   class="btn btn-primary">+1 Increment</button>
+          <button id="btn-counter-dec"   class="btn btn-secondary">&#8722;1 Decrement</button>
+          <button id="btn-counter-reset" class="btn btn-secondary">Reset</button>
+        </div>
+        <div id="event-log" class="event-log">
+          <p class="log-header">Event Log</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p>Lab 5 &mdash; Dart DOM Manipulation &mdash; <span id="footer-time"></span></p>
+  </footer>
+</body>
+</html>
