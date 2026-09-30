@@ -1,24 +1,13 @@
-A bare-bones Dart web app.
+# LAB 5 - DOM Manipulation
 
-Uses [`package:web`](https://pub.dev/packages/web)
-to interop with JS and the DOM.
+This is a Dart Web Application that shows how Dart can dynamically change a web page's content, styling, and behavior in real time without reloading the page.
 
-## Running and building
+## App Contains -
 
-To run the app,
-activate and use [`package:webdev`](https://dart.dev/tools/webdev):
+1. **Text Content Change** - You can type any text in the input box and click "Update Text". Dart finds the paragraph on the screen and changes its text immediately. You can also click "Reset" to return to the original text.
 
-```
-dart pub global activate webdev
-webdev serve
-```
+2. **Style & Color Change** - You can click different color buttons (Blue, Green, Purple, Rose, Amber) to change the background and borders of a box, or change font size and bold formatting using Dart.
 
-To build a production version ready for deployment,
-use the `webdev build` command:
+3. **Theme Toggling (CSS Classes)** - You can click buttons like "Success", "Warning", "Danger", or "Dark" to dynamically switch visual themes by having Dart apply and remove CSS classes.
 
-```
-webdev build
-```
-
-To learn how to interop with web APIs and other JS libraries,
-check out https://dart.dev/interop/js-interop.
+4. **Click Counter & Event Log** - You can increment, decrement, or reset a counter. Every time you click a button, Dart updates the counter number with an animation and writes a timestamped record in the live event log below.
