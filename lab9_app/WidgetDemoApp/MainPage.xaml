@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WidgetDemoApp.MainPage"
+             Title="Student Profile Card">
+
+    <!-- Outer ScrollView so the page scrolls correctly on smaller screens -->
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="20,30"
+            Spacing="20">
+
+            <!-- ═══════════════════════════════════════════ -->
+            <!--  Step 2: Profile Image                      -->
+            <!-- ═══════════════════════════════════════════ -->
+            <Image
+                Source="yashvi_image.jpg"
+                HeightRequest="120"
+                WidthRequest="120"
+                Aspect="AspectFill"
+                HorizontalOptions="Center"
+                SemanticProperties.Description="Student profile avatar" />
+
+            <!-- ═══════════════════════════════════════════ -->
+            <!--  Step 2: Profile Summary Card (Frame)       -->
+            <!-- ═══════════════════════════════════════════ -->
+            <Frame
+                CornerRadius="16"
+                Padding="20"
+                HasShadow="True"
+                BorderColor="LightGray">
+                <VerticalStackLayout Spacing="6" HorizontalOptions="Center">
+                    <!-- Student Name – large, bold -->
+                    <Label
+                        x:Name="StudentNameLabel"
+                        Text="Yashvi Mehta"
+                        FontSize="22"
+                        FontAttributes="Bold"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center" />
+
+                    <!-- Course – smaller, grey -->
+                    <Label
+                        x:Name="CourseLabel"
+                        Text="B.Tech – Computer Engineering"
+                        FontSize="14"
+                        TextColor="Gray"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- ═══════════════════════════════════════════ -->
+            <!--  Step 3 & 4: Like + Message buttons          -->
+            <!-- ═══════════════════════════════════════════ -->
+            <HorizontalStackLayout
+                Spacing="12"
+                HorizontalOptions="Center">
+
+                <!-- Like Button – counter increments on tap -->
+                <Button
+                    x:Name="LikeBtn"
+                    Text="Like (0)"
+                    Clicked="OnLikeClicked"
+                    WidthRequest="140" />
+
+                <!-- Message Button – shows an alert dialog -->
+                <Button
+                    x:Name="MessageBtn"
+                    Text="Message"
+                    Clicked="OnMessageClicked"
+                    WidthRequest="140" />
+            </HorizontalStackLayout>
+
+            <!-- ═══════════════════════════════════════════ -->
+            <!--  Step 4: Comment Entry                      -->
+            <!-- ═══════════════════════════════════════════ -->
+            <Frame
+                CornerRadius="10"
+                Padding="8,4"
+                HasShadow="False"
+                BorderColor="LightGray">
+                <Entry
+                    x:Name="CommentEntry"
+                    Placeholder="Add a comment…"
+                    FontSize="14" />
+            </Frame>
+
+            <!-- ═══════════════════════════════════════════ -->
+            <!--  Step 5: Horizontal Skill List              -->
+            <!-- ═══════════════════════════════════════════ -->
+            <Label
+                Text="Skills"
+                FontSize="16"
+                FontAttributes="Bold" />
+
+            <CollectionView
+                x:Name="SkillsCollection"
+                HeightRequest="70"
+                ItemsLayout="HorizontalList"
+                HorizontalScrollBarVisibility="Always">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame
+                            CornerRadius="20"
+                            Padding="14,8"
+                            Margin="4,0"
+                            HasShadow="False"
+                            BackgroundColor="#5B4FCF"
+                            BorderColor="Transparent">
+                            <Label
+                                Text="{Binding .}"
+                                TextColor="White"
+                                FontSize="13"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center" />
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
