@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LayoutsDemoApp.MainPage"
+             Title="Profile Page">
+
+    <!-- Step 1: ScrollView with exactly one child (outer vertical StackLayout) -->
+    <ScrollView>
+        <VerticalStackLayout Spacing="20" Padding="20">
+
+            <!-- Step 2: Header (horizontal StackLayout + AbsoluteLayout badge) -->
+            <HorizontalStackLayout Spacing="0">
+                <Label Text="Profile Page"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       VerticalOptions="Center"
+                       WidthRequest="250" />
+
+                <AbsoluteLayout WidthRequest="50" HeightRequest="50">
+                    <Image Source="notif_icon.jpg"
+                           AbsoluteLayout.LayoutBounds="0,0,40,40"
+                           AbsoluteLayout.LayoutFlags="None" />
+                    <!-- Badge positioned at icon's top-right corner (icon is 40x40, badge 16x16) -->
+                    <BoxView Color="Red"
+                             CornerRadius="8"
+                             AbsoluteLayout.LayoutBounds="30,0,16,16"
+                             AbsoluteLayout.LayoutFlags="None" />
+                </AbsoluteLayout>
+            </HorizontalStackLayout>
+
+            <!-- Step 3: Profile card (Frame > Grid with 2 columns > nested StackLayout) -->
+            <Frame Padding="15" CornerRadius="12" HasShadow="True">
+                <Grid ColumnDefinitions="80,*" ColumnSpacing="15">
+                    <Image Grid.Column="0"
+                           Source="yashvi_image.jpg"
+                           WidthRequest="80"
+                           HeightRequest="80"
+                           Aspect="AspectFit" />
+                    <VerticalStackLayout Grid.Column="1" VerticalOptions="Center" Spacing="4">
+                        <Label Text="Yashvi Mehta" FontSize="20" FontAttributes="Bold" />
+                        <Label Text="Mobile App Developer" FontSize="14" TextColor="Gray" />
+                    </VerticalStackLayout>
+                </Grid>
+            </Frame>
+
+            <!-- Step 4: Statistics row (horizontal StackLayout of vertical StackLayouts) -->
+            <HorizontalStackLayout HorizontalOptions="Fill" Spacing="0">
+                <VerticalStackLayout WidthRequest="100" HorizontalOptions="CenterAndExpand">
+                    <Label Text="120" FontSize="22" FontAttributes="Bold" HorizontalOptions="Center" />
+                    <Label Text="Posts" FontSize="12" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+                <VerticalStackLayout WidthRequest="100" HorizontalOptions="CenterAndExpand">
+                    <Label Text="3.4K" FontSize="22" FontAttributes="Bold" HorizontalOptions="Center" />
+                    <Label Text="Followers" FontSize="12" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+                <VerticalStackLayout WidthRequest="100" HorizontalOptions="CenterAndExpand">
+                    <Label Text="180" FontSize="22" FontAttributes="Bold" HorizontalOptions="Center" />
+                    <Label Text="Following" FontSize="12" HorizontalOptions="Center" />
+                </VerticalStackLayout>
+            </HorizontalStackLayout>
+
+            <!-- Step 5: Tag list (FlexLayout with Wrap enabled) -->
+            <FlexLayout Wrap="Wrap" Direction="Row" JustifyContent="Start" AlignItems="Start">
+                <Frame Padding="10,5" Margin="0,0,8,8" CornerRadius="15" BackgroundColor="#E8E0FF" HasShadow="False" BorderColor="Transparent">
+                    <Label Text="Design" TextColor="#512BD4" />
+                </Frame>
+                <Frame Padding="10,5" Margin="0,0,8,8" CornerRadius="15" BackgroundColor="#E8E0FF" HasShadow="False" BorderColor="Transparent">
+                    <Label Text="Mobile" TextColor="#512BD4" />
+                </Frame>
+                <Frame Padding="10,5" Margin="0,0,8,8" CornerRadius="15" BackgroundColor="#E8E0FF" HasShadow="False" BorderColor="Transparent">
+                    <Label Text="UI" TextColor="#512BD4" />
+                </Frame>
+                <Frame Padding="10,5" Margin="0,0,8,8" CornerRadius="15" BackgroundColor="#E8E0FF" HasShadow="False" BorderColor="Transparent">
+                    <Label Text=".NET MAUI" TextColor="#512BD4" />
+                </Frame>
+                <Frame Padding="10,5" Margin="0,0,8,8" CornerRadius="15" BackgroundColor="#E8E0FF" HasShadow="False" BorderColor="Transparent">
+                    <Label Text="XAML" TextColor="#512BD4" />
+                </Frame>
+                <Frame Padding="10,5" Margin="0,0,8,8" CornerRadius="15" BackgroundColor="#E8E0FF" HasShadow="False" BorderColor="Transparent">
+                    <Label Text="C#" TextColor="#512BD4" />
+                </Frame>
+                <Frame Padding="10,5" Margin="0,0,8,8" CornerRadius="15" BackgroundColor="#E8E0FF" HasShadow="False" BorderColor="Transparent">
+                    <Label Text="Layouts" TextColor="#512BD4" />
+                </Frame>
+            </FlexLayout>
+
+            <!-- Step 6: Closing action button -->
+            <Button Text="View Full Profile"
+                    HorizontalOptions="Fill"
+                    Clicked="OnViewProfileClicked" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
