@@ -1,6 +1,16 @@
 # CampusSphere
 
-Everything about campus, one tap away. One Flutter app with a separate home for **students**, **professors** and **admins**, backed by Node.js + Express, PostgreSQL on Supabase, **Supabase Auth** for sign up / login, and JWT role-based access.
+Solve the campus hassle, one tap away. 
+
+CampusSphere is a live operating system for campus life. Most college apps digitise the classroom: notes, assignments and marks. CampusSphere digitises everything around it: the walk to a professor's cabin, the hunt for an empty room, the class that moved at the last minute, the certificate nobody explains, and the broken fan nobody fixes. Because one shared model of the timetable, rooms and people drives every feature, the app can answer questions no notice board or WhatsApp group can: is my professor actually free right now, which lab is empty until 4 pm, and when is the earliest time my whole project group and our guide are all available.
+
+The idea grew out of my own four years at college. I have stood outside cabins not knowing whether the professor was even on campus, gone floor to floor looking for a quiet room before an exam, missed a rescheduled lecture because the message was buried in a group chat, and asked around for weeks to learn how to get a bonafide certificate. Watching my professors, I saw the other side too: crowds at their door between lectures, rescheduling a class by hand around everyone's timetable, and project groups chasing them over messages. I wanted to build something genuinely useful that fixes these everyday problems for both sides, so every feature in CampusSphere maps to a problem I faced or saw a professor face.
+
+The app has a separate experience for each of its three roles: students, professors and administrators (hostel warden, estate officer, HOD and dean). All three share one Flutter app, one Node.js + Express backend and one PostgreSQL database hosted on Supabase.
+
+CampusSphere is deliberately not a learning management system. It has no assignments, grades, notes or quizzes. It focuses only on logistics: people, rooms, time and paperwork.
+
+The pilot is modelled on VJTI, with three branches (Computer Engineering, Information Technology, Electronics & Telecommunication), two years (Third Year and Final Year BTech) and seven sections. The Final Year CE section A uses the real departmental timetable. Everything about the campus (branches, years, sections, rooms, periods, subjects and the timetable) is stored as data, so more of the campus can be added without code changes.
 
 ```
 CPAD_LabExam/
